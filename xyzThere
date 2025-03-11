@@ -1,0 +1,5 @@
+public boolean xyzThere(String str) {
+  // Call .split on string and compares the length. Since all instances of .xyz contain xyz, 
+  // if they arent equal it means there is an xyz in the string
+  return str.split("\\.xyz", -1).length != str.split("xyz", -1).length;
+}
