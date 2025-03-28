@@ -1,0 +1,22 @@
+public double roundTo2(double input){
+  long factor = (long) Math.pow(10, 2);
+  input = input * 100 * factor;
+  long tmp = Math.round(input);
+  input = (double) tmp / factor;
+  return input;
+}
+
+public String UIL2015_INVA_02_BENFORD(int[] data) {
+  double leading1 = 0;
+  double noLeading1 = 0;
+  double decimalPercent;
+  double percent;
+  for(int i = 0; i < data.length; i++){
+    if(String.valueOf(data[i]).substring(0,1).equals("1")) leading1++;
+    else noLeading1++;
+  }
+  percent = roundTo2(leading1/(leading1+noLeading1));
+  if(Math.abs(percent-30) <= 5) return "PASSED";
+  if(percent * 100 % 10 == 0) return "FAILED: " + percent + "0%";
+  return "FAILED: " + percent + "%";
+}
